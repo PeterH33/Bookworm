@@ -45,9 +45,13 @@ struct AddBookView: View {
                     Button("Save"){
                         let newBook = Book(context: moc)
                         newBook.id = UUID()
+                        newBook.date = Date.now
                         newBook.title = title
+                        if title.isEmpty { newBook.title = "Unknown Title"}
                         newBook.author = author
+                        if author.isEmpty { newBook.author = "Unknown Author"}
                         newBook.genre = genre
+                        if genre.isEmpty { newBook.genre = "Poetry"}
                         newBook.rating = Int16(rating)
                         newBook.review = review
                         

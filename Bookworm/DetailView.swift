@@ -43,8 +43,15 @@ struct DetailView: View {
                 .foregroundColor(.secondary)
             
             Text(book.review ?? "No review")
-                .padding()
-            
+                .padding([.top, .leading, .trailing])
+            HStack{
+                Spacer()
+                Text(book.date ?? Date.now, format: .dateTime.day().month().year() )
+                    .font(.caption)
+                    .multilineTextAlignment(.trailing)
+                    .padding(.trailing)
+                
+            }
             RatingView(rating: .constant(Int(book.rating)))
                 .font(.largeTitle)
         }//End scroll view
@@ -66,19 +73,19 @@ struct DetailView: View {
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-    
-    static var previews: some View {
-        let book = Book(context: moc)
-        book.title = "Test book"
-        book.author = "Test Author"
-        book.genre = "Fantasy"
-        book.rating = 4
-        book.review = "Test review words would go in this space here."
-        
-        return NavigationView{
-            DetailView(book: book)
-        }
-    }
-}
+//struct DetailView_Previews: PreviewProvider {
+//    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+//    
+//    static var previews: some View {
+//        let book = Book(context: moc)
+//        book.title = "Test book"
+//        book.author = "Test Author"
+//        book.genre = "Fantasy"
+//        book.rating = 4
+//        book.review = "Test review words would go in this space here."
+//        
+//        return NavigationView{
+//            DetailView(book: book)
+//        }
+//    }
+//}
